@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PVRMonitor</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_about">About us</string>
+
+    <string-array name="overlay_position_list">
+        <item >left</item>
+        <item >right</item>
+    </string-array>
+    
+    <string name="back_button_warning">Press \"Back\" again to terminate the PVRMonitor. Press \"Home\" to keep it alive.</string>
+    
+    <string name="display_options">Display options</string>
+	    <string name="top_left">Top left</string>
+	    <string name="top_right">Top right</string>
+	    <string name="opacity">Opacity</string>
+	    <string name="cpu_each">Show all CPU cores</string>
+	    <string name="cpu_smooth">Average the CPU load (1s)</string>
+ 	    <string name="gpu_smooth">Average the GPU load (0.5s)</string>
+ 	       
+    <string name="hw_loads">Hardware blocks load (%)</string>
+	    <string name="load_cpu">CPU</string>
+	    <string name="load_3d">Total Pixel</string>
+	    <string name="load_ta">Total Vertex</string>
+	    <string name="load_pixel">ALU: Pixel</string>
+	    <string name="load_vertex">ALU: Vertex</string>
+    
+    <string name="what_are_these_values">What are these values?</string>
+        <string name="load_3d_definition">The total load of the pixel processing hardware. This includes work in the ISP (<i>Image Synthesis Processor</i>), TSP (<i>Texture and Shading Processor</i>), and pixel processing in the ALUs and related stall time.
+        </string>
+        <string name="load_ta_definition">The total load of the vertex processing hardware. This includes vertex processing in the ALUs, work in the TA (<i>Tile Accelerator</i>) and related stall time.
+        </string>
+        <string name="load_pixel_definition">Percentage of time that the ALUs have spent processing pixel shaders.
+        </string>
+        <string name="load_vertex_definition">Percentage of time that the ALUs have spent processing vertex shaders.
+        </string>
+	    
+    <string name="about_img_title">Imagination Technologies</string>
+    <string name="about_img_text">Imagination Technologies Ltd.\nhttp://www.imgtec.com/</string>
+    
+    <string name="about_pvr_title">PowerVR Insider</string>
+    <string name="about_pvr_text">PowerVR Insider is our developer support program, which grants you access to our forums, graphics SDKs, and utilities.</string>
+    
+    <string name="about_support_title">Support:</string>    
+    <string name="about_support_text"><a href="https://pvrsupport.imgtec.com/">https://pvrsupport.imgtec.com/</a></string>
+
+    <string name="about_forum_title">PowerVR Insider Forum:</string>    
+    <string name="about_forum_text"><a href="http://forum.imgtec.com/categories/powervr-graphics/">http://forum.imgtec.com/categories/powervr-graphics/</a></string>    
+
+</resources>

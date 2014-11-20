@@ -1,0 +1,304 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context=".PVRMonitor" >
+    
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+	    
+    <LinearLayout
+        android:id="@+id/main_content"
+        android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+        android:orientation="vertical" > 
+        
+        <ImageView 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" 
+	        android:layout_gravity="center"
+	        android:src="@drawable/pvr_logo"/>
+	    
+	    <!--  
+	    <CheckedTextView
+	        android:id="@+id/show_fps"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+			android:clickable="true"
+		    android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+		    android:gravity="center"
+	        android:text="Show FPS" 
+	        android:onClick="onShowFPS"/>
+	    -->
+	    
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/display_options"
+	        android:textStyle="bold"
+	        android:textColor="#AD0075"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+	    
+	    <LinearLayout 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" 
+	        android:orientation="horizontal" >
+	        
+	        <CheckedTextView 
+	        	android:id="@+id/position_left"
+		    	android:layout_width="wrap_content"
+		   	 	android:layout_height="wrap_content"
+				android:clickable="true"
+		    	android:drawableLeft="?android:attr/listChoiceIndicatorSingle"
+		    	android:gravity="center"
+	        	android:text="@string/top_left" 
+	        	android:onClick="onPositionLeft"/> 
+	        
+	        <CheckedTextView 
+	        	android:id="@+id/position_right"
+		    	android:layout_width="wrap_content"
+		   	 	android:layout_height="wrap_content"
+				android:clickable="true"
+		    	android:drawableLeft="?android:attr/listChoiceIndicatorSingle"
+		    	android:gravity="center"
+	        	android:text="@string/top_right" 
+	        	android:checked="true"
+	        	android:onClick="onPositionRight"/> 
+	         
+	    </LinearLayout>
+	    
+	    <LinearLayout 
+	    	android:layout_width="fill_parent"
+	   		android:layout_height="wrap_content"
+        	android:orientation="horizontal">
+        	
+		    <TextView 	        
+		        android:layout_width="wrap_content"
+		        android:layout_height="fill_parent"
+		        android:gravity="center"
+		        android:text="@string/opacity"/>
+		    	    
+		    <SeekBar 
+		        android:id="@+id/slide_opacity"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+			    android:max="255"
+			    android:progress="100"/>
+	    </LinearLayout>	    
+	    
+	    <CheckedTextView
+	        android:id="@+id/show_multi_core"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+			android:clickable="true"
+		    android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+		    android:gravity="center"
+	        android:text="@string/cpu_each" 
+	        android:onClick="onShowEachCore"/>
+	    
+	    <CheckedTextView
+	        android:id="@+id/show_smooth_cpu"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+			android:clickable="true"
+		    android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+		    android:gravity="center"
+	        android:text="@string/cpu_smooth" 
+	        android:checked="false"
+	        android:onClick="onAverageCPU"/>
+	    
+   	    <CheckedTextView
+	        android:id="@+id/show_smooth_gpu"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+			android:clickable="true"
+		    android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+		    android:gravity="center"
+	        android:text="@string/gpu_smooth" 
+	        android:checked="false"
+	        android:onClick="onAverageGPU"/>
+	    
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/hw_loads"
+	        android:textStyle="bold"
+	        android:textColor="#AD0075"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+	    	    
+	    <LinearLayout 
+	        android:id="@+id/main_list"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent" 
+	        android:orientation="horizontal" >	  
+	        
+	        <LinearLayout 
+		        android:id="@+id/main_list_left"
+		        android:layout_width="0px"
+		        android:layout_height="wrap_content" 
+		        android:layout_weight="50"
+		        android:orientation="vertical" >
+		        
+		        <CheckedTextView
+			        android:id="@+id/show_cpu"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content" 
+				    android:clickable="true"
+				    android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+				    android:gravity="center"
+			        android:text="@string/load_cpu" 
+			        android:checked="true"
+			        android:onClick="onShowCPULoad"/>
+		        
+		        <CheckedTextView
+			        android:id="@+id/show_3d"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:clickable="true"
+				    android:drawableLeft="?android:attr/listChoiceIndicatorMultiple" 
+				    android:gravity="center"
+			        android:text="@string/load_3d" 
+			        android:checked="true"
+			        android:onClick="onShow3DLoad"/>
+		        
+		        <CheckedTextView
+			        android:id="@+id/show_ta"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content" 
+				    android:clickable="true"
+				    android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+				    android:gravity="center"
+			        android:text="@string/load_ta" 
+			       	android:checked="true"
+			        android:onClick="onShowTALoad"/>
+	    	</LinearLayout>
+	    	
+			<LinearLayout 
+		        android:id="@+id/main_list_right"
+		        android:layout_width="0px"
+		        android:layout_height="wrap_content" 
+		        android:layout_weight="50"
+		        android:orientation="vertical" >
+		        
+			    <!-- 
+		        <CheckedTextView
+			        android:id="@+id/show_tsp"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content" 
+				    android:clickable="true"
+				    android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+				    android:gravity="center"
+			        android:text="TSP Load (%)" 
+			        android:onClick="onShowTSPLoad"/>
+		         -->
+		        <CheckedTextView
+			        android:id="@+id/show_pixel"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:clickable="true"
+				    android:drawableLeft="?android:attr/listChoiceIndicatorMultiple" 
+				    android:gravity="center"
+			        android:text="@string/load_pixel" 
+			        android:onClick="onShowPixelLoad"/>
+		        
+		        <CheckedTextView
+			        android:id="@+id/show_vertex"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content" 
+				    android:clickable="true"
+				    android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+				    android:gravity="center"
+			        android:text="@string/load_vertex"
+			        android:onClick="onShowVertexLoad"/>
+	    	</LinearLayout>
+	    </LinearLayout>
+	    
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/what_are_these_values"
+	        android:textStyle="bold"
+	        android:textColor="#AD0075"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+	    	        <!-- android:textColor="@android:color/holo_red_dark" -->
+		
+		<TextView
+		    android:id="@+id/help_title_3dload"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:text="@string/load_3d"/>
+		
+		<TextView
+		    android:id="@+id/help_item_3dload"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:paddingLeft="20dp"
+	        android:text="@string/load_3d_definition"/>
+		
+		<TextView
+		    android:id="@+id/help_title_taload"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:text="@string/load_ta"/>
+		
+		<TextView
+		    android:id="@+id/help_item_taload"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:paddingLeft="20dp"
+	        android:text="@string/load_ta_definition"/>
+		<!-- 
+		<TextView
+		    android:id="@+id/help_title_tspload"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textColor="@android:color/holo_red_dark"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:text="TSP Load:"/>
+		
+		<TextView
+		    android:id="@+id/help_item_tspload"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="The percentage of time that the TSP (Texture and Shading Processor) unit is busy."/>
+		-->
+		<TextView
+		    android:id="@+id/help_title_pixelload"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:text="@string/load_pixel"/>
+		
+		<TextView
+		    android:id="@+id/help_item_pixelload"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:paddingLeft="20dp"
+	        android:text="@string/load_pixel_definition"/>
+		
+		<TextView
+		    android:id="@+id/help_title_vertexload"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:text="@string/load_vertex"/>
+		
+		<TextView
+		    android:id="@+id/help_item_vertexload"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:paddingLeft="20dp"
+	        android:text="@string/load_vertex_definition"/>
+		
+		</LinearLayout>
+	</ScrollView>
+</LinearLayout>

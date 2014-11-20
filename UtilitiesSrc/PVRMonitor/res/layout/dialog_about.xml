@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+    
+    <ImageView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/pvr_logo"
+        android:layout_gravity="center_horizontal"/>
+    
+    <TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/about_pvr_text"
+        android:paddingBottom="12dp"/>
+    
+    <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="@string/about_support_title"
+       android:textStyle="bold"
+       android:textColor="#AD0075"
+       android:textAppearance="?android:attr/textAppearanceLarge"/>
+	               
+    <TextView 
+        android:id="@+id/about_us_support"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/about_support_text"
+        android:textIsSelectable="true"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="@string/about_forum_title"
+       android:textStyle="bold"
+       android:textColor="#AD0075"
+       android:paddingTop="8dp"
+       android:textAppearance="?android:attr/textAppearanceLarge"/>
+    
+    <TextView 
+        android:id="@+id/about_us_forum"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/about_forum_text"
+        android:textIsSelectable="true"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+</LinearLayout>
