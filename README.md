@@ -1,6 +1,6 @@
 PVRMonitor
 ==========
-![PVRMonitorScreenshot](https://lh3.ggpht.com/JKxSPXWsyOBMvTKjllG-4qk1YKxSRhwEBAUVd-GWH9cT6mOEKJ69oPUeFf9wuO66sA=h900-rw)
+![PVRMonitorScreenshot](http://powervr-graphics.github.io/PVRMonitor/images/PVRMonitor.png)
 
 PVRMonitor allows a user to view real-time hardware performance stats, giving information about processor usage on the CPU and PowerVR graphics hardware (Series5, Series5XT, Series6) with negligible impact on performance. The data is presented as a bar graph, updated in real time and overlaid on top of currently running applications.
 
