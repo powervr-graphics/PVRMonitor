@@ -1,7 +1,7 @@
 LOCAL_PATH := $(call my-dir)
 PVRSDKDIR := $(realpath $(LOCAL_PATH)/../../..)
 
-APP_PLATFORM := android-9
+APP_PLATFORM := android-10
 
 # Module PVRScopeDeveloper
 include $(CLEAR_VARS)

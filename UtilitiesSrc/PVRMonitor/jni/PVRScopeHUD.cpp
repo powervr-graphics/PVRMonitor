@@ -63,12 +63,12 @@ bool PVRScopeHUD::initialisePVRScope()
 		LOGI("Total counters enabled: %d.", m_nCounters);
 
 		//Assign the counter index to the struct
-		m_sPVRScopeCounterIndex.FPS			= PVRScopeFindStandardCounter(m_pPVRScopeData, ePVRScopeStandardCounter_FPS);
-		m_sPVRScopeCounterIndex._2DLoad		= PVRScopeFindStandardCounter(m_pPVRScopeData, ePVRScopeStandardCounter_Load_2D);
-		m_sPVRScopeCounterIndex._3DLoad		= PVRScopeFindStandardCounter(m_pPVRScopeData, ePVRScopeStandardCounter_Load_Renderer);
-		m_sPVRScopeCounterIndex.TALoad		= PVRScopeFindStandardCounter(m_pPVRScopeData, ePVRScopeStandardCounter_Load_Tiler);
-		m_sPVRScopeCounterIndex.pixelLoad	= PVRScopeFindStandardCounter(m_pPVRScopeData, ePVRScopeStandardCounter_Load_Shader_Pixel);
-		m_sPVRScopeCounterIndex.vertexLoad	= PVRScopeFindStandardCounter(m_pPVRScopeData, ePVRScopeStandardCounter_Load_Shader_Vertex);
+		m_sPVRScopeCounterIndex.FPS			= PVRScopeFindStandardCounter(m_nCounters, m_pPVRScopeCounterDef, m_nActiveGroupSelect, ePVRScopeStandardCounter_FPS);
+		m_sPVRScopeCounterIndex._2DLoad		= PVRScopeFindStandardCounter(m_nCounters, m_pPVRScopeCounterDef, m_nActiveGroupSelect, ePVRScopeStandardCounter_Load_2D);
+		m_sPVRScopeCounterIndex._3DLoad		= PVRScopeFindStandardCounter(m_nCounters, m_pPVRScopeCounterDef, m_nActiveGroupSelect, ePVRScopeStandardCounter_Load_Renderer);
+		m_sPVRScopeCounterIndex.TALoad		= PVRScopeFindStandardCounter(m_nCounters, m_pPVRScopeCounterDef, m_nActiveGroupSelect, ePVRScopeStandardCounter_Load_Tiler);
+		m_sPVRScopeCounterIndex.pixelLoad	= PVRScopeFindStandardCounter(m_nCounters, m_pPVRScopeCounterDef, m_nActiveGroupSelect, ePVRScopeStandardCounter_Load_Shader_Pixel);
+		m_sPVRScopeCounterIndex.vertexLoad	= PVRScopeFindStandardCounter(m_nCounters, m_pPVRScopeCounterDef, m_nActiveGroupSelect, ePVRScopeStandardCounter_Load_Shader_Vertex);
 
 		/* DEBUG only */
 		for(int i = 0; i < m_nCounters; ++i)
@@ -98,7 +98,7 @@ bool PVRScopeHUD::readCounters(bool toReturnData)
 	//Check that PVRScope has been initialized
 	if (m_pPVRScopeData == NULL) return false;
 
-	//Ask for the active group 0 only on the first run. Then set it to 0xffffffff
+	//Ask for the active group 0 only on the first run.
 	if(m_bActiveGroupChanged)
 	{
 		PVRScopeSetGroup(m_pPVRScopeData, m_nActiveGroupSelect);
@@ -118,16 +118,26 @@ bool PVRScopeHUD::readCounters(bool toReturnData)
 		if (psReading == NULL) return false;
 #if DUMP_PVRSCOPE_DATA
 		/* DEBUG only */
+		int index = 0;
 		for(int i = 0; i < m_nCounters; ++i)
 		{
-			if(i < m_sPVRScopeCounterReading.nValueCnt)
+			if ((m_pPVRScopeCounterDef[i].nGroup == 0) ||
+				(m_pPVRScopeCounterDef[i].nGroup == 0xFFFFFFFF))
 			{
-				//If it is a percentage output the % symbol:
-				if(m_pPVRScopeCounterDef[i].nBoolPercentage)
-					LOGI("%s : %f\%", m_pPVRScopeCounterDef[i].pszName, m_sPVRScopeCounterReading.pfValueBuf[i]);
-				else
-					LOGI("%s : %f", m_pPVRScopeCounterDef[i].pszName, m_sPVRScopeCounterReading.pfValueBuf[i]);
+				if(index < m_sPVRScopeCounterReading.nValueCnt)
+				{
+					//If it is a percentage output the % symbol:
+					if(m_pPVRScopeCounterDef[i].nBoolPercentage)
+						LOGI("%s : %f\%", m_pPVRScopeCounterDef[i].pszName, m_sPVRScopeCounterReading.pfValueBuf[index]);
+					else
+						LOGI("%s : %f", m_pPVRScopeCounterDef[i].pszName, m_sPVRScopeCounterReading.pfValueBuf[index]);
+				}
+				++index;
 			}
+		}
+		if(index != m_sPVRScopeCounterReading.nValueCnt)
+		{
+			LOGI("Expected %u results, got %u.", index, m_sPVRScopeCounterReading.nValueCnt);
 		}
 #endif
 		return true;
@@ -165,12 +175,12 @@ float PVRScopeHUD::getCounter(EPVRScopeCounter eCounter)
 		default:
 			break;
 	}
-	if (index >= 0)
+	if (index >= 0 && index < m_sPVRScopeCounterReading.nValueCnt)
 	{
 		retVal = m_sPVRScopeCounterReading.pfValueBuf[index];
 	}
 
-	// Sanitize the value as sometimes PVRScope loses data
+	// Sanitize the value
 	if (retVal > 100) retVal = 0;
 
 	return retVal;
