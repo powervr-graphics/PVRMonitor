@@ -1,0 +1,364 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context=".PVRMonitor" >
+
+
+  <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/main_content"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/pvr_logo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/display_options"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#AD0075"
+                android:textStyle="bold" />
+
+            <CheckedTextView
+                android:id="@+id/Show_Overlay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:clickable="true"
+                android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+                android:gravity="center"
+                android:onClick="onShowHUD"
+                android:text="@string/show_overlay" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckedTextView
+                    android:id="@+id/position_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:drawableLeft="?android:attr/listChoiceIndicatorSingle"
+                    android:gravity="center"
+                    android:onClick="onPositionLeft"
+                    android:text="@string/top_left" />
+
+                <CheckedTextView
+                    android:id="@+id/position_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:clickable="true"
+                    android:drawableLeft="?android:attr/listChoiceIndicatorSingle"
+                    android:gravity="center"
+                    android:onClick="onPositionRight"
+                    android:text="@string/top_right" />
+
+                <CheckedTextView
+                    android:id="@+id/free_move"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:drawableLeft="?android:attr/listChoiceIndicatorSingle"
+                    android:gravity="center"
+                    android:onClick="onFreeMove"
+                    android:text="@string/free_move" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="@string/opacity" />
+
+                <SeekBar
+                    android:id="@+id/slide_opacity"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+                    android:max="255"
+                    android:progress="100" />
+            </LinearLayout>
+
+            <!--
+            <CheckedTextView
+                android:id="@+id/show_multi_core"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+                android:gravity="center"
+                android:text="@string/cpu_each"
+                android:onClick="onShowEachCore"/>
+-->
+            <CheckedTextView
+                android:id="@+id/show_smooth_cpu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:clickable="true"
+                android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+                android:gravity="center"
+                android:onClick="onAverageCPU"
+                android:text="@string/cpu_smooth" />
+
+            <CheckedTextView
+                android:id="@+id/show_smooth_gpu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:clickable="true"
+                android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+                android:gravity="center"
+                android:onClick="onAverageGPU"
+                android:text="@string/gpu_smooth" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/enabled_values"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#AD0075"
+                android:textStyle="bold" />
+
+
+            <LinearLayout
+                android:id="@+id/main_list"
+                android:layout_width="fill_parent"
+                android:layout_height="200dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <CheckedTextView
+                        android:id="@+id/show_fps"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:clickable="true"
+                        android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+                        android:gravity="center"
+                        android:onClick="onShowFPS"
+                        android:text="@string/load_fps"
+                        android:textSize="15sp"></CheckedTextView>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <Spinner
+                        android:id="@+id/select_FPS"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/black"
+                        android:gravity="end"></Spinner>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <CheckedTextView
+                        android:id="@+id/show_cpu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:clickable="true"
+                        android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+                        android:gravity="center"
+                        android:onClick="onShowCPULoad"
+                        android:text="@string/load_cpu"
+                        android:textSize="15sp"></CheckedTextView>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <Spinner
+                        android:id="@+id/select_CPU"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/black"
+                        android:gravity="end"></Spinner>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <CheckedTextView
+                        android:id="@+id/show_3d"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:clickable="true"
+                        android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+                        android:gravity="center"
+                        android:onClick="onShow3DLoad"
+                        android:text="@string/load_3d"
+                        android:textSize="15sp"></CheckedTextView>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <Spinner
+                        android:id="@+id/select_3D"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/black"
+                        android:gravity="end"></Spinner>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <CheckedTextView
+                        android:id="@+id/show_ta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:clickable="true"
+                        android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+                        android:gravity="center"
+                        android:onClick="onShowTALoad"
+                        android:text="@string/load_ta"
+                        android:textSize="15sp"></CheckedTextView>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <Spinner
+                        android:id="@+id/select_ta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/black"
+                        android:gravity="end"></Spinner>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <CheckedTextView
+                        android:id="@+id/show_pixel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:clickable="true"
+                        android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+                        android:gravity="center"
+                        android:onClick="onShowPixelLoad"
+                        android:text="@string/load_pixel"
+                        android:textSize="15sp"></CheckedTextView>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <Spinner
+                        android:id="@+id/select_pixel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/black"
+                        android:gravity="end"></Spinner>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <CheckedTextView
+                        android:id="@+id/show_vertex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:clickable="true"
+                        android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+                        android:gravity="center"
+                        android:onClick="onShowVertexLoad"
+                        android:text="@string/load_vertex"
+                        android:textSize="15sp"></CheckedTextView>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <Spinner
+                        android:id="@+id/select_vertex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/black"
+                        android:gravity="end"></Spinner>
+                </LinearLayout><View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/extended_values"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#AD0075"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/extended_value_list"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/add_value_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onAddValue"
+                    android:text="@string/add_value" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
